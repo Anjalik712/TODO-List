@@ -44,3 +44,7 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 .angular
+# Backend - .NET specific
+todo-app-backend/bin/
+todo-app-backend/obj/
+todo-app-backend/.vs/

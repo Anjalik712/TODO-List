@@ -19,7 +19,11 @@ export default [
       '**/*.mjs',
     ],
     // Override or add rules here
-    rules: {},
+    rules: {
+      'no-console': ['warn'],
+      'no-duplicate-imports': 'error',
+      'object-curly-spacing': ['error', 'always']
+    },
   },
   ...nx.configs['flat/angular'],
   ...nx.configs['flat/angular-template'],
