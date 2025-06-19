@@ -1,11 +1,5 @@
-import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandlerFn,
-  HttpEvent,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { HttpInterceptorFn,HttpRequest, HttpHandlerFn,HttpEvent,HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
 const BASE_URL = 'https://localhost:7261/api';
