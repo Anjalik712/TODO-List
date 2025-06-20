@@ -8,11 +8,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './button.css',
 })
 export class Button {
-  @Input() label = 'Click';
+  @Input() label: string;
   @Input() type = 'button';
   @Input() cssClass = 'btn btn-primary';
   @Input() icon?: string;
-
+  @Input() disabled= false;
   @Output() action = new EventEmitter<void>();
 
   onClick() {

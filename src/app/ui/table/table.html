@@ -1,10 +1,10 @@
-<table class="table" style="width: 70%;">
+<table class="table table-sm" style="width: 70%">
   <thead>
     <tr>
       <th scope="col"></th>
       <th scope="col">Task</th>
       <th scope="col">Due Date</th>
-      <th scope="col" style="width: 0%;">Actions</th>
+      <th scope="col" style="width: 0%">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +13,6 @@
         <input
           class="form-check-input"
           type="checkbox"
-          id="checkDefault"
           [checked]="todo.completed"
           (change)="toggleComplete(todo)"
         />
@@ -22,8 +21,8 @@
       <td>{{todo.due_date}}</td>
       <td>
         <div class="d-flex column-gap-2">
-          <app-button label="Edit" cssClass="btn btn-secondary"></app-button>
-          <app-button label="Delete" cssClass="btn btn-danger"></app-button>
+          <app-button icon="bi bi-pencil-fill" cssClass="btn btn-secondary btn-sm" [disabled]="todo.completed===true?true:false" ></app-button>
+          <app-button icon="bi bi-trash-fill" cssClass="btn btn-danger btn-sm" [disabled]="todo.completed===true?true:false"></app-button>
         </div>
       </td>
     </tr>
