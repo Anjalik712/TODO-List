@@ -1,34 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Button } from "../button/button";
+import { FormsModule } from '@angular/forms';
+import { Todo } from '../../core/models/todo.model';
+import { TodoServices } from '../../core/services/todo.services';
 
 @Component({
   selector: 'app-table',
-  imports: [CommonModule, Button],
+  imports: [CommonModule, Button, FormsModule],
   templateUrl: './table.html',
   styleUrl: './table.css',
 })
-export class Table {
-  // @Input todos=[];
-  todos=[
-    {
-      completed:true,
-      task:'Email CEO',
-      due_date:'28/05/2025'
-    },
-    {
-      completed:false,
-      task:'Eat Lunch',
-      due_date:'29/05/2025'
-    },
-    {
-      completed:true,
-      task:'Book doctors appointment',
-      due_date:'30/05/2025'
-    },
-  ];
+export class Table implements OnInit{
+  todos=signal<Todo[]>([]);
+  // eslint-disable-next-line @angular-eslint/prefer-inject
+  constructor(private todoservices:TodoServices){}
   toggleComplete(todo) {
   todo.completed = !todo.completed;
 }
-  
+
+ngOnInit(): void {
+  this.todoservices.GetAllTodos().subscribe((t:Todo[])=>this.todos.set(t));
+}
+  pendingTasks=computed(()=>this.todos().filter(todo=>!todo.completed));
+  completedTasks=computed(()=>this.todos().filter(todo=>todo.completed));
 }

@@ -11,7 +11,7 @@ export const httpInterceptor: HttpInterceptorFn = (
   const token = localStorage.getItem('authToken');
 
   const updatedReq = req.clone({
-    url: req.url.startsWith('http') ? req.url : `${BASE_URL}/${req.url}`,
+    url: req.url.startsWith('https') ? req.url : `${BASE_URL}/${req.url}`,
     setHeaders: token ? { Authorization: `Bearer ${token}` } : {},
   });
 
