@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-input-field',
   imports: [CommonModule],
-  templateUrl: './input-field.html',
-  styleUrl: './input-field.css',
+  templateUrl: './input-field.component.html',
+  styleUrl: './input-field.component.css',
 })
-export class InputField {
+export class InputFieldComponent {
   @Input type = 'text';
   @Input placeholder = 'Enter text';
 }

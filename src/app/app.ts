@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Page } from "./page/page";
+import { TodoListWrapperComponent } from './todo-list-wrapper/todo-list-wrapper.component';
 
 @Component({
-  imports: [RouterModule, Page],
+  imports: [RouterModule, TodoListWrapperComponent],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',

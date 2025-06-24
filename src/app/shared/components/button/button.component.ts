@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-button',
   imports: [CommonModule],
-  templateUrl: './button.html',
-  styleUrl: './button.css',
+  templateUrl: './button.component.html',
+  styleUrl: './button.component.css',
 })
-export class Button {
+export class ButtonComponent {
   @Input() label: string;
   @Input() type = 'button';
   @Input() cssClass = 'btn btn-primary';

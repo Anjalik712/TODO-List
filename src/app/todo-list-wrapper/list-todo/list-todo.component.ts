@@ -1,17 +1,17 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { Button } from '../button/button';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../core/models/todo.model';
 import { TodoServices } from '../../core/services/todo.services';
 
 @Component({
-  selector: 'app-table',
-  imports: [CommonModule, Button, FormsModule],
-  templateUrl: './table.html',
-  styleUrl: './table.css',
+  selector: 'app-list-todo',
+  imports: [CommonModule, ButtonComponent, FormsModule, DatePipe],
+  templateUrl: './list-todo.component.html',
+  styleUrl: './list-todo.component.css',
 })
-export class Table implements OnInit {
+export class ListTodoComponent implements OnInit {
   todos = signal<Todo[]>([]);
   // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private todoservices: TodoServices) {}
