@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './input-field.css',
 })
 export class InputField {
-  @Input type='text'
-  @Input placeholder='Enter text'
+  @Input type = 'text';
+  @Input placeholder = 'Enter text';
 }

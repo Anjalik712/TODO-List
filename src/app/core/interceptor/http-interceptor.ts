@@ -1,5 +1,11 @@
 import { inject } from '@angular/core';
-import { HttpInterceptorFn,HttpRequest, HttpHandlerFn,HttpEvent,HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpInterceptorFn,
+  HttpRequest,
+  HttpHandlerFn,
+  HttpEvent,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
 const BASE_URL = 'https://localhost:7261/api';
@@ -20,7 +26,10 @@ export const httpInterceptor: HttpInterceptorFn = (
       if (error.status === 0) {
         console.error('Network error or server unreachable:', error);
       } else if (error.status === 400) {
-        console.error('Bad Request (400):',error.error?.message || error.message);
+        console.error(
+          'Bad Request (400):',
+          error.error?.message || error.message
+        );
       } else if (error.status === 401) {
         console.error('Unauthorized (401)');
       } else if (error.status === 403) {

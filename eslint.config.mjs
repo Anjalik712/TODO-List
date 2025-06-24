@@ -30,6 +30,13 @@ export default [
   {
     files: ['**/*.ts'],
     rules: {
+      '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'method',
+        format: ['camelCase'],
+      }
+    ],
       '@angular-eslint/directive-selector': [
         'error',
         {

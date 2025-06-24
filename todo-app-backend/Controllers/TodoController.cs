@@ -11,7 +11,7 @@ using todo_app_backend.Models;
 
 namespace todo_app_backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/todos")]
     [ApiController]
     public class TodoController : ControllerBase
     {
