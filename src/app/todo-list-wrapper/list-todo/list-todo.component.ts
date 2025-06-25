@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Todo } from '../../core/models/todo.model';
 import { TodoServices } from '../../core/services/todo.services';
 import { CreateTodoComponent } from '../create-todo/create-todo.component';
-
+import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
 @Component({
   selector: 'app-list-todo',
   imports: [
@@ -14,6 +14,7 @@ import { CreateTodoComponent } from '../create-todo/create-todo.component';
     FormsModule,
     DatePipe,
     CreateTodoComponent,
+    HighlightPendingDirective,
   ],
   templateUrl: './list-todo.component.html',
   styleUrl: './list-todo.component.css',
