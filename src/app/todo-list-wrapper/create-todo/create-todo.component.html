@@ -1,1 +1,57 @@
-<p>add-edit-form.component works!</p>
+<div
+  class="modal fade"
+  [id]="id"
+  tabindex="-1"
+  [attr.aria-labelledby]="id + 'Label'"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" [id]="id + 'Label'">{{ title }}</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-3">
+            <label for="task" class="col-form-label col-sm-3">Task:</label>
+            <div class="col-sm-9">
+              <input
+                id="task"
+                type="text"
+                formControlName="task"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="duedate" class="col-form-label col-sm-3"
+              >Due Date:</label
+            >
+            <div class="col-sm-9">
+              <input
+                id="duedate"
+                type="date"
+                formControlName="dueDate"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <app-button
+            label="Submit"
+            type="'submit'"
+            cssClass="btn btn-success"
+            dismiss="modal"
+            [disabled]="!todoForm.valid"
+          ></app-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

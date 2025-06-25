@@ -13,6 +13,9 @@ export class ButtonComponent {
   @Input() cssClass = 'btn btn-primary';
   @Input() icon?: string;
   @Input() disabled = false;
+  @Input() toggle?: string;
+  @Input() target?: string;
+  @Input() dismiss = 'modal';
   @Output() action = new EventEmitter<void>();
 
   onClick() {

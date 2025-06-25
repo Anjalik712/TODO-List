@@ -1,8 +1,11 @@
 <button
   [type]="type"
-  [class]="cssClass"
+  [ngClass]="cssClass"
   [disabled]="disabled"
   (click)="onClick()"
+  [attr.data-bs-toggle]="toggle"
+  [attr.data-bs-target]="target"
+  [attr.data-bs-dismiss]="dismiss"
 >
   <i *ngIf="icon" [class]="icon"></i>
   {{ label }}

@@ -4,10 +4,11 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { FormsModule } from '@angular/forms';
 import { Todo } from '../../core/models/todo.model';
 import { TodoServices } from '../../core/services/todo.services';
+import { CreateTodoComponent } from '../create-todo/create-todo.component';
 
 @Component({
   selector: 'app-list-todo',
-  imports: [CommonModule, ButtonComponent, FormsModule, DatePipe],
+  imports: [CommonModule, ButtonComponent, FormsModule, DatePipe, CreateTodoComponent],
   templateUrl: './list-todo.component.html',
   styleUrl: './list-todo.component.css',
 })
