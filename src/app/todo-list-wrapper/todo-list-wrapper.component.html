@@ -1,14 +1,18 @@
 <div class="mx-5 my-2">
-  <h1 class="display-3 mb-5">To-Do List</h1>
-  <app-button
-    label="Add task"
-    cssClass="btn btn-success"
-    toggle="modal"
-    target="#createTaskModal"
-  ></app-button>
-  <app-list-todo></app-list-todo>
-  <app-create-todo
-    [id]="'createTaskModal'"
-    title="Add New Task"
-  ></app-create-todo>
+  <h1 class="display-3 mb-5">
+    {{ 'TODO_LIST.APPLICATION_TITLE' | translate }}
+  </h1>
+ 
+    <app-button
+      [label]="'TODO_LIST.BUTTON.ADD_TASK' | translate"
+      cssClass="btn btn-success"
+      toggle="modal"
+      target="#createTaskModal"
+    ></app-button>
+    <app-list-todo></app-list-todo>
+    <app-create-todo
+      [id]="'createTaskModal'"
+      [title]="'TODO_LIST.MODAL.ADD_TASK_TITLE' | translate"
+    ></app-create-todo>
+  
 </div>

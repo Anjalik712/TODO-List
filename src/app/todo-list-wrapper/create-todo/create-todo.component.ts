@@ -7,10 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-todo',
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, TranslatePipe],
   templateUrl: './create-todo.component.html',
   styleUrl: './create-todo.component.css',
 })

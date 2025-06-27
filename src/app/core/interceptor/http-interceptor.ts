@@ -14,6 +14,9 @@ export const httpInterceptor: HttpInterceptorFn = (
   req: HttpRequest<any>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
+  if (req.url.includes('/assets/i18n/') || req.url.includes('/i18n/')) {
+    return next(req);
+  }
   const token = localStorage.getItem('authToken');
 
   const updatedReq = req.clone({
