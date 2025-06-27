@@ -5,7 +5,7 @@ using todo_app_backend.Models;
 
 namespace todo_app_backend.Features.Todos
 {
-    public class GetAllTodosQueryHandler : IRequestHandler<GetAllTodosQuery, IEnumerable<Todo>>
+    public record GetAllTodosQueryHandler : IRequestHandler<GetAllTodosQuery, IEnumerable<Todo>>
     {
         private readonly TodoDbContext _context;
         public GetAllTodosQueryHandler(TodoDbContext context) {

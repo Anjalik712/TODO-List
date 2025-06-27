@@ -1,10 +1,15 @@
-﻿namespace todo_app_backend.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace todo_app_backend.Models
 {
     public class Todo
     {
-        public int id { get; set; }
-        public string task { get; set; } = string.Empty;
-        public DateTime dueDate { get; set; }
-        public bool completed { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public string Task { get; set; } = string.Empty;
+        public DateTime DueDate { get; set; }
+        public bool Completed { get; set; } = false;
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using todo_app_backend.Data;
+using todo_app_backend.Features.Todos;
 using todo_app_backend.Models;
 
 namespace todo_app_backend.Controllers
@@ -25,6 +26,12 @@ namespace todo_app_backend.Controllers
         {
             var todos = await _mediator.Send(new Features.Todos.GetAllTodosQuery());
             return Ok(todos);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateTodo([FromBody] CreateTodoCommand command)
+        {
+            var todo=await _mediator.Send(command);
+            return Ok(todo);
         }
     }
 }
