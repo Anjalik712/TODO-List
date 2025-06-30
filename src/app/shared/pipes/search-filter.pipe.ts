@@ -5,12 +5,11 @@ import { Todo } from '../../core/models/todo.model';
   name: 'searchFilterPipe',
 })
 export class SearchFilterPipe implements PipeTransform {
-  transform(value: Todo[], userInput: string) {
-    userInput = userInput ? userInput.toLowerCase() : '';
-    return userInput
+  transform(value: Todo[], userSearchInput: string) {
+    userSearchInput = userSearchInput ? userSearchInput.toLowerCase() : '';
+    return userSearchInput
       ? value.filter(
-          (data) => data.task.toLowerCase().indexOf(userInput) > -1
-          // ||data.dueDate.toLowerCase().indexOf(userInput) > -1
+          (data) => data.task.toLowerCase().indexOf(userSearchInput) > -1
         )
       : value;
   }

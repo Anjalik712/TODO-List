@@ -8,7 +8,7 @@ import { Todo } from '../models/todo.model';
 })
 export class TodoServices {
   private readonly endpoint = 'todos';
-  private http=inject(HttpClient);
+  private http = inject(HttpClient);
   getAllTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.endpoint);
   }

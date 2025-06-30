@@ -1,17 +1,25 @@
-<form class="d-flex">
-  <input
-    class="form-control me-2"
-    type="search"
-    placeholder="Search by Task"
-    aria-label="Search"
-    [formControl]="userInput"
-  />
-  <button class="btn btn-outline-success" type="submit">Search</button>
+<form class="d-flex gap-2">
+  <app-button
+    [label]="'TODO_LIST.BUTTON.ADD_TASK' | translate"
+    cssClass="btn btn-success"
+    toggle="modal"
+    target="#createTaskModal"
+  ></app-button>
+  <div class="search-wrapper">
+    <input
+      class="form-control me-2 focus-ring"
+      type="search"
+      id="search"
+      placeholder="Search by Task"
+      aria-label="Search"
+      [formControl]="userSearchInput"
+    />
+  </div>
 </form>
-<p>
+<p *ngIf="userSearchInput.value">
   Number of search result :
-  {{ (todos() | searchFilterPipe : userInput.value).length }} out of
-  {{ todos().length }} total users
+  {{ (todos() | searchFilterPipe : userSearchInput.value).length }} out of
+  {{ todos().length }} total tasks
 </p>
 
 <table class="table table-sm">
@@ -24,18 +32,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="!pendingTasks().length">
+    <tr *ngIf="pendingTasks().length === 0">
       <td colspan="100%" class="text-center">No tasks to show!</td>
     </tr>
     <tr
-      *ngFor="let pendingTask of pendingTasks()"
+      *ngFor="
+        let pendingTask of pendingTasks()
+          | searchFilterPipe : userSearchInput.value
+      "
       appHighlightPending
       [overdueDate]="pendingTask.dueDate"
       [isCompleted]="pendingTask.completed"
     >
       <th scope="row">
         <input
-          class="form-check-input"
+          class="form-check-input focus-ring"
           type="checkbox"
           id="`checkDefaultPending+${{ pendingTask.id }}`"
           [checked]="pendingTask.completed"
@@ -70,10 +81,15 @@
     <tr *ngIf="!completedTasks().length">
       <td colspan="100%" class="text-center">No completed tasks to show!</td>
     </tr>
-    <tr *ngFor="let completedTask of completedTasks()">
+    <tr
+      *ngFor="
+        let completedTask of completedTasks()
+          | searchFilterPipe : userSearchInput.value
+      "
+    >
       <th scope="row">
         <input
-          class="form-check-input"
+          class="form-check-input focus-ring"
           type="checkbox"
           id="`checkDefaultPending+${{ completedTask.id }}`"
           [checked]="true"

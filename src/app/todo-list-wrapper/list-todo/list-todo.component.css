@@ -1,4 +1,13 @@
 .form-check-input:checked {
-    background-color: #198754;
-    border-color: #198754;
+  background-color: #198754;
+  border-color: #198754;
+}
+.form-check-input:checked {
+  box-shadow: rgba(25, 135, 84, 0.402);
+}
+.form-control:focus {
+  box-shadow: rgba(25, 135, 84, 0.402);
+}
+.focus-ring {
+  --bs-focus-ring-color: rgba(var(--bs-success-rgb), 0.25);
 }

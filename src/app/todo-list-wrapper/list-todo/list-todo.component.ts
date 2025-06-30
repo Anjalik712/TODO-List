@@ -26,7 +26,7 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
 })
 export class ListTodoComponent implements OnInit {
   todos = signal<Todo[]>([]);
-  userInput = new FormControl('');
+  userSearchInput = new FormControl('');
   private todoservices = inject(TodoServices);
   toggleComplete(todo: Todo) {
     todo.completed = !todo.completed;
