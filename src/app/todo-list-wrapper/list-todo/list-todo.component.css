@@ -5,14 +5,8 @@
 .form-check-input:checked {
   box-shadow: rgba(25, 135, 84, 0.402);
 }
-.form-control:focus {
-  box-shadow: rgba(25, 135, 84, 0.402);
-}
-.focus-ring {
-  --bs-focus-ring-color: rgba(var(--bs-success-rgb), 0.25);
-}
 input[type='search']::-webkit-search-cancel-button {
-  filter: invert(100%) sepia(100%) saturate(500%) hue-rotate(90deg);
+  filter: invert(100%) hue-rotate(105deg);
 }
 input:focus {
   border-color: #198754;

@@ -1,3 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/dist/css/bootstrap.css';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+.focus-ring {
+  --bs-focus-ring-color: rgba(var(--bs-success-rgb), 0.25);
+}
