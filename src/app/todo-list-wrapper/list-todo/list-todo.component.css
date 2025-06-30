@@ -11,3 +11,9 @@
 .focus-ring {
   --bs-focus-ring-color: rgba(var(--bs-success-rgb), 0.25);
 }
+input[type='search']::-webkit-search-cancel-button {
+  filter: invert(100%) sepia(100%) saturate(500%) hue-rotate(90deg);
+}
+input:focus {
+  border-color: #198754;
+}
