@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormGroup,
@@ -14,6 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, ReactiveFormsModule, ButtonComponent, TranslatePipe],
   templateUrl: './create-todo.component.html',
   styleUrl: './create-todo.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateTodoComponent {
   @Input() id!: string;
