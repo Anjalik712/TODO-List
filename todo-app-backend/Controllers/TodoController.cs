@@ -51,7 +51,11 @@ namespace todo_app_backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _mediator.Send(new DeleteTodoCommand(id));
+            var deleted=await _mediator.Send(new DeleteTodoCommand(id));
+            if (!deleted)
+            {
+                return NotFound("Todo not found");
+            }
             return NoContent();
         }
     }

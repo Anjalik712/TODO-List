@@ -12,4 +12,16 @@ export class TodoServices {
   getAllTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.endpoint);
   }
+  createTodo(todo: { Task: string; DueDate: string; Completed: boolean }) {
+    return this.http.post<Todo>(this.endpoint, todo);
+  }
+  updateTodo(id: number, todo: Todo) {
+    return this.http.put<Todo>(`${this.endpoint}/${id}`, todo);
+  }
+  changeStatus(id: number, completed: boolean) {
+    return this.http.patch(`${this.endpoint}/${id}/status`, completed);
+  }
+  deleteTodo(id: number) {
+    return this.http.delete(`${this.endpoint}/${id}`);
+  }
 }

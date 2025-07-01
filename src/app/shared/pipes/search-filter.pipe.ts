@@ -6,10 +6,10 @@ import { Todo } from '../../core/models/todo.model';
 })
 export class SearchFilterPipe implements PipeTransform {
   transform(value: Todo[], userSearchInput: string) {
-    userSearchInput = userSearchInput ? userSearchInput.toLowerCase() : '';
+    userSearchInput = userSearchInput ? userSearchInput.toLowerCase() : ''; //check if any input is there
     return userSearchInput
       ? value.filter(
-          (data) => data.task.toLowerCase().indexOf(userSearchInput) > -1
+          (todo) => todo.task.toLowerCase().indexOf(userSearchInput) > -1
         )
       : value;
   }

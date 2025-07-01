@@ -13,7 +13,12 @@ namespace todo_app_backend.Features.Todos
         }
         public async Task<Todo> Handle(CreateTodoCommand request, CancellationToken cancellationToken)
         {
-            var todo = new Todo { Task = request.Task, DueDate = request.DueDate, Completed = request.Completed };
+            var todo = new Todo
+            {
+                Task = request.Task,
+                DueDate = request.DueDate,  
+                Completed = request.Completed
+            };
             _context.Todo.Add(todo);
             await _context.SaveChangesAsync();
             return todo;

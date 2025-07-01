@@ -1,10 +1,4 @@
-<form class="d-flex gap-2">
-  <app-button
-    [label]="'TODO_LIST.BUTTON.ADD_TASK' | translate"
-    cssClass="btn btn-success"
-    toggle="modal"
-    target="#createTaskModal"
-  ></app-button>
+<form class="d-flex justify-content-between gap-2">
   <div class="search-wrapper">
     <input
       class="form-control me-2 focus-ring"
@@ -15,6 +9,13 @@
       [formControl]="userSearchInput"
     />
   </div>
+  <app-button
+    [label]="'TODO_LIST.BUTTON.ADD_TASK' | translate"
+    cssClass="btn btn-success"
+    toggle="modal"
+    target="#createTaskModal"
+    (taskAdded)="refreshTodos()"
+  ></app-button>
 </form>
 <p *ngIf="userSearchInput.value">
   Number of search result :
@@ -64,10 +65,12 @@
             cssClass="btn btn-sm"
             toggle="modal"
             target="#editTaskModal"
+            (click)="openEditModal(pendingTask)"
           ></app-button>
           <app-button
             icon="bi bi-trash-fill"
             cssClass="btn btn-sm"
+            (click)="onDelete(pendingTask.id)"
           ></app-button>
         </div>
       </td>
@@ -92,7 +95,8 @@
           class="form-check-input focus-ring"
           type="checkbox"
           id="`checkDefaultPending+${{ completedTask.id }}`"
-          [checked]="true"
+          [checked]="completedTask.completed"
+          (change)="toggleComplete(completedTask)"
         />
       </th>
       <td>{{ completedTask.task }}</td>
@@ -102,6 +106,13 @@
   </tbody>
 </table>
 <app-create-todo
+  [id]="'createTaskModal'"
+  [title]="'TODO_LIST.MODAL.ADD_TASK_TITLE' | translate"
+  (taskAdded)="refreshTodos()"
+></app-create-todo>
+<app-create-todo
   [id]="'editTaskModal'"
   [title]="'TODO_LIST.MODAL.ADD_TASK_TITLE' | translate"
+  [todoData]="selectedTaskToEdit"
+  (taskAdded)="refreshTodos()"
 ></app-create-todo>

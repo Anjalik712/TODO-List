@@ -26,17 +26,51 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
 })
 export class ListTodoComponent implements OnInit {
   todos = signal<Todo[]>([]);
+  private todoServices = inject(TodoServices);
   userSearchInput = new FormControl('');
   private todoservices = inject(TodoServices);
   toggleComplete(todo: Todo) {
+    const prevStatus = todo.completed;
     todo.completed = !todo.completed;
+    this.todoServices.changeStatus(todo.id, todo.completed).subscribe({
+      next: () => {
+        console.log('Status updated successfully');
+        this.refreshTodos();
+      },
+      error: (err) => {
+        console.error('Error updating status:', err);
+        todo.completed = !todo.completed; // Revert if error
+      },
+    });
   }
 
   ngOnInit(): void {
     this.todoservices.getAllTodos().subscribe((t: Todo[]) => this.todos.set(t));
   }
+  refreshTodos() {
+    this.todoServices.getAllTodos().subscribe((data) => {
+      this.todos.set(data);
+    });
+  }
   pendingTasks = computed(() => this.todos().filter((todo) => !todo.completed));
   completedTasks = computed(() =>
     this.todos().filter((todo) => todo.completed)
   );
+  selectedTaskToEdit: any = null;
+
+  openEditModal(task: any) {
+    this.selectedTaskToEdit = { ...task };
+  }
+  onDelete(id: number) {
+    this.todoServices.deleteTodo(id).subscribe({
+      next: () => {
+        console.log('Task deleted successfully');
+        this.refreshTodos();
+      },
+      error: (err) => {
+        console.error('Delete failed:', err);
+        alert('Failed to delete task. Please try again.');
+      },
+    });
+  }
 }

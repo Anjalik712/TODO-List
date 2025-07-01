@@ -9,7 +9,7 @@ namespace todo_app_backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Task { get; set; } = string.Empty;
-        public DateTime DueDate { get; set; }
+        public DateOnly DueDate { get; set; }
         public bool Completed { get; set; } = false;
     }
 }
