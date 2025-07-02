@@ -1,23 +1,24 @@
 {
-  "TODO_LIST": {
-    "APPLICATION_TITLE": "To-Do List",
-    "BUTTON": {
+  "MESSAGE": {},
+
+  "PAGE": {
+    "BUTTONS": {
       "ADD_TASK": "Add Task",
       "SUBMIT": "Submit"
     },
-    "MODAL": {
+    "LABELS": {
+      "APPLICATION_TITLE": "To-Do List",
       "ADD_TASK_TITLE": "Add New Task",
-      "EDIT_TASK_TITLE": "Modify Task"
-    },
-    "FORM": {
-      "TASK_LABEL": "Task:",
-      "DUE_DATE_LABEL": "Due Date:"
-    },
-    "TABLE": {
+      "EDIT_TASK_TITLE": "Modify Task",
+      "TASK": "Task:",
+      "DUE_DATE": "Due Date:",
       "TASK_HEADER": "Task",
       "DUE_DATE_HEADER": "Due Date",
       "ACTIONS_HEADER": "Actions",
       "COMPLETED_TASKS_HEADER": "Completed Tasks"
-    }
+    },
+    "TOOLTIPS": {},
+    "PLACEHOLDERS": {},
+    "ALTERNATE_TEXTS": {}
   }
 }
