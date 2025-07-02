@@ -22,7 +22,7 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
     ReactiveFormsModule,
   ],
   templateUrl: './list-todo.component.html',
-  styleUrl: './list-todo.component.css',
+  styleUrl: './list-todo.component.scss',
 })
 export class ListTodoComponent implements OnInit {
   todos = signal<Todo[]>([]); //signal to hold all todos

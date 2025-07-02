@@ -15,6 +15,6 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe,
   ],
   templateUrl: './todo-list-wrapper.component.html',
-  styleUrl: './todo-list-wrapper.component.css',
+  styleUrl: './todo-list-wrapper.component.scss',
 })
 export class TodoListWrapperComponent {}

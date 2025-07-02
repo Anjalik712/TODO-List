@@ -23,7 +23,7 @@ import { TodoServices } from '../../core/services/todo.services';
   selector: 'app-create-todo',
   imports: [CommonModule, ReactiveFormsModule, ButtonComponent, TranslatePipe],
   templateUrl: './create-todo.component.html',
-  styleUrl: './create-todo.component.css',
+  styleUrl: './create-todo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateTodoComponent implements OnChanges {
