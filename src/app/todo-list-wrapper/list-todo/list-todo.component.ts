@@ -25,52 +25,42 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
   styleUrl: './list-todo.component.css',
 })
 export class ListTodoComponent implements OnInit {
-  todos = signal<Todo[]>([]);
-  private todoServices = inject(TodoServices);
-  userSearchInput = new FormControl('');
-  private todoservices = inject(TodoServices);
-  toggleComplete(todo: Todo) {
-    const prevStatus = todo.completed;
-    todo.completed = !todo.completed;
-    this.todoServices.changeStatus(todo.id, todo.completed).subscribe({
-      next: () => {
-        console.log('Status updated successfully');
-        this.refreshTodos();
-      },
-      error: (err) => {
-        console.error('Error updating status:', err);
-        todo.completed = !todo.completed; // Revert if error
-      },
-    });
-  }
-
-  ngOnInit(): void {
-    this.todoservices.getAllTodos().subscribe((t: Todo[]) => this.todos.set(t));
-  }
-  refreshTodos() {
-    this.todoServices.getAllTodos().subscribe((data) => {
-      this.todos.set(data);
-    });
-  }
+  todos = signal<Todo[]>([]); //signal to hold all todos
+  //computed signal for pending
   pendingTasks = computed(() => this.todos().filter((todo) => !todo.completed));
+  //computed signal to hold completed tasks
   completedTasks = computed(() =>
     this.todos().filter((todo) => todo.completed)
   );
-  selectedTaskToEdit: any = null;
-
-  openEditModal(task: any) {
-    this.selectedTaskToEdit = { ...task };
+  private todoServices = inject(TodoServices); //inject services to handle apis
+  userSearchInput = new FormControl(''); //input field binding for search functionality
+  selectedTaskToEdit: Todo = null; //stores the task selected for editing
+  ngOnInit(): void {
+    this.refreshTodos();
   }
+  // Refreshes the todo list by fetching data from the server
+  refreshTodos() {
+    this.todoServices.getAllTodos().subscribe((data: Todo[]) => {
+      this.todos.set(data);
+    });
+  }
+  //Toggles the completion status of todo
+  toggleComplete(todo: Todo) {
+    todo.completed = !todo.completed;
+    this.todoServices.changeStatus(todo.id, todo.completed).subscribe({
+      next: () => this.refreshTodos(),
+      error: () => (todo.completed = !todo.completed), // Revert if error
+    });
+  }
+  //set the selected task to be edited to open modal with prefilled data
+  openEditModal(task: Todo) {
+    this.selectedTaskToEdit = { ...task }; //avoid editing original data
+  }
+  // Deletes a todo by ID and refreshes the list
   onDelete(id: number) {
     this.todoServices.deleteTodo(id).subscribe({
-      next: () => {
-        console.log('Task deleted successfully');
-        this.refreshTodos();
-      },
-      error: (err) => {
-        console.error('Delete failed:', err);
-        alert('Failed to delete task. Please try again.');
-      },
+      next: () => this.refreshTodos(),
+      error: () => alert('Failed to delete task. Please try again.'),
     });
   }
 }
