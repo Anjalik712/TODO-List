@@ -5,7 +5,7 @@ import { Todo } from '../../core/models/todo.model';
   name: 'searchFilterPipe',
 })
 export class SearchFilterPipe implements PipeTransform {
-  transform(value: Todo[], userSearchInput: string) {
+  transform(value: ITodo, userSearchInput: string) {
     userSearchInput = userSearchInput ? userSearchInput.toLowerCase() : ''; //check if any input is there
     return userSearchInput
       ? value.filter(

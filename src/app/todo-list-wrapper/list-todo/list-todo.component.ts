@@ -2,7 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Todo } from '../../core/models/todo.model';
+import { ITodo } from '../../core/models/todo.model';
 import { TodoServices } from '../../core/services/todo.services';
 import { CreateTodoComponent } from '../create-todo/create-todo.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
@@ -70,7 +70,7 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
   styleUrl: './list-todo.component.scss',
 })
 export class ListTodoComponent implements OnInit {
-  todos = signal<Todo[]>([]); //signal to hold all todos
+  todos = signal<ITodo[]>([]); //signal to hold all todos
   //computed signal for pending
   pendingTasks = computed(() => this.todos().filter((todo) => !todo.completed));
   //computed signal to hold completed tasks
@@ -79,18 +79,18 @@ export class ListTodoComponent implements OnInit {
   );
   private todoServices = inject(TodoServices); //inject services to handle apis
   userSearchInput = new FormControl(''); //input field binding for search functionality
-  selectedTaskToEdit: Todo = null; //stores the task selected for editing
+  selectedTaskToEdit: ITodo = null; //stores the task selected for editing
   ngOnInit(): void {
     this.refreshTodos();
   }
   // Refreshes the todo list by fetching data from the server
   refreshTodos() {
-    this.todoServices.getAllTodos().subscribe((data: Todo[]) => {
+    this.todoServices.getAllTodos().subscribe((data: ITodo[]) => {
       this.todos.set(data);
     });
   }
   //Toggles the completion status of todo
-  toggleComplete(todo: Todo) {
+  toggleComplete(todo: ITodo) {
     todo.completed = !todo.completed;
     this.todoServices.changeStatus(todo.id, todo.completed).subscribe({
       next: () => this.refreshTodos(),
@@ -98,7 +98,7 @@ export class ListTodoComponent implements OnInit {
     });
   }
   //set the selected task to be edited to open modal with prefilled data
-  openEditModal(task: Todo) {
+  openEditModal(task: ITodo) {
     this.selectedTaskToEdit = { ...task }; //avoid editing original data
   }
   // Deletes a todo by ID and refreshes the list

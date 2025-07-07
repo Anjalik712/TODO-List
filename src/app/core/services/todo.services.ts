@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Todo } from '../models/todo.model';
+import { ITodo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +9,14 @@ import { Todo } from '../models/todo.model';
 export class TodoServices {
   private readonly endpoint = 'todos';
   private http = inject(HttpClient);
-  getAllTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.endpoint);
+  getAllTodos(): Observable<ITodo[]> {
+    return this.http.get<ITodo[]>(this.endpoint);
   }
   createTodo(todo: { Task: string; DueDate: string; Completed: boolean }) {
-    return this.http.post<Todo>(this.endpoint, todo);
+    return this.http.post<ITodo>(this.endpoint, todo);
   }
-  updateTodo(id: number, todo: Todo) {
-    return this.http.put<Todo>(`${this.endpoint}/${id}`, todo);
+  updateTodo(id: number, todo: ITodo) {
+    return this.http.put<ITodo>(`${this.endpoint}/${id}`, todo);
   }
   changeStatus(id: number, completed: boolean) {
     return this.http.patch(`${this.endpoint}/${id}/status`, completed);

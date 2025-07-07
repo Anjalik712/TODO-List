@@ -5,12 +5,12 @@ import {
 } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { TodoServices } from './todo.services';
-import { Todo } from '../models/todo.model';
+import { ITodo } from '../models/todo.model';
 
 describe('TodoServices', () => {
   let service: TodoServices;
   let httpMock: HttpTestingController;
-  const mockTodos: Todo[] = [
+  const mockTodos: ITodo[] = [
     { id: 1, task: 'Learn Angular', dueDate: '01-07-2025', completed: false },
     { id: 2, task: 'Build Todo App', dueDate: '02-07-2025', completed: true },
   ];
@@ -50,7 +50,7 @@ describe('TodoServices', () => {
   });
 
   it('should handle empty response', () => {
-    const emptyTodos: Todo[] = [];
+    const emptyTodos: ITodo[] = [];
 
     service.getAllTodos().subscribe((todos) => {
       expect(todos).toEqual([]);
