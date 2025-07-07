@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { TodoServices } from './todo.services';
-import { ITodo } from '../models/todo.model';
+import { ITodo } from '../models/ITodo.model';
 
 describe('TodoServices', () => {
   let service: TodoServices;

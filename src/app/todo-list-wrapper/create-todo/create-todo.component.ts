@@ -72,43 +72,52 @@ import { TodoServices } from '../../core/services/todo.services';
 export class CreateTodoComponent implements OnChanges {
   // ID for the modal (create or edit)
   @Input() id!: string;
+  
   // Title of the modal
   @Input() title = 'Task Details';
+  
   // Optional data passed to pre-fill the form for editing a todo
-  @Input() todoData?: {
+  @Input() todoData: {
     id: number;
     task: string;
     dueDate: string;
     completed: boolean;
   };
+  
   // Output event to notify parent component when a task is added or updated
   @Output() taskAdded = new EventEmitter<void>();
+  
   //inject services to handle apis
   private todoService = inject(TodoServices);
+  
   // Reactive form group definition for task creation/editing
   todoForm = new FormGroup({
     task: new FormControl('', Validators.required),
     dueDate: new FormControl('', Validators.required),
   });
+
   // Detect changes to @inputs, specifically `todoData`, for edit mode and patch values
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['todoData'] && this.isEditMode) {
       this.setFormValues();
     }
   }
+
   //check if it is edit mode
   get isEditMode(): boolean {
     return this.todoData && this.id === 'editTaskModal';
   }
+
   //prefill the form in modal
-  setFormValues() {
+  setFormValues(): void {
     this.todoForm.patchValue({
       task: this.todoData?.task || '',
       dueDate: this.todoData?.dueDate || '',
     });
   }
+
   //Handle submit function
-  onSubmit() {
+  onSubmit(): void {
     // Prevent submission if form is invalid
     if (this.todoForm.invalid) return;
     const formValue = this.todoForm.value;
@@ -128,9 +137,9 @@ export class CreateTodoComponent implements OnChanges {
       // Create todo
       this.todoService
         .createTodo({
-          Task: formValue.task,
-          DueDate: formValue.dueDate,
-          Completed: false,
+          task: formValue.task,
+          dueDate: formValue.dueDate,
+          completed: false,
         })
         .subscribe({
           next: () => this.taskAdded.emit(),

@@ -7,6 +7,7 @@ export class HighlightPendingDirective implements OnInit {
   @Input() overdueDate: string;
   @Input() isCompleted: boolean;
   private el = inject(ElementRef);
+  
   ngOnInit() {
     const today = new Date();
     const dueDate = new Date(this.overdueDate);

@@ -43,17 +43,35 @@ import { CommonModule } from '@angular/common';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  @Input() label: string;
-  @Input() type = 'button';
-  @Input() cssClass = 'btn btn-primary';
-  @Input() icon?: string;
-  @Input() disabled = false;
-  @Input() toggle?: string;
-  @Input() target?: string;
-  @Input() dismiss = 'modal';
-  @Output() action = new EventEmitter<void>();
+  // Label to display inside the button
+  @Input() label = '';
 
-  onClick() {
-    this.action.emit();
+  // HTML button type (e.g., 'button', 'submit', 'reset')
+  @Input() type = 'button';
+
+  // CSS classes to style the button
+  @Input() cssClass = 'btn btn-primary';
+
+  // Icon class to show inside the button
+  @Input() icon = '';
+
+  // Whether the button is disabled
+  @Input() disabled = false;
+
+  // Bootstrap modal toggle type for opening modals
+  @Input() toggle = '';
+
+  // Target modal ID to open
+  @Input() target = '';
+
+  // Dismiss type for closing modals (default is 'modal')
+  @Input() dismiss = 'modal';
+
+  // Emits an event when the button is clicked
+  @Output() buttonClick = new EventEmitter<void>();
+
+  // Handles button click and emits the buttonClick event
+  onClick(): void {
+    this.buttonClick.emit();
   }
 }
