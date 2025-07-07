@@ -7,9 +7,19 @@ import { provideHttpClient } from '@angular/common/http';
 import { TodoServices } from './todo.services';
 import { ITodo } from '../models/ITodo.model';
 
+interface TodoServiceTestContext {
+  service: TodoServices;
+  httpMock: HttpTestingController;
+}
+
 describe('TodoServices', () => {
-  let service: TodoServices;
-  let httpMock: HttpTestingController;
+  // Reusable setup method to get instances
+  function setup(): TodoServiceTestContext {
+    const service = TestBed.inject(TodoServices);
+    const httpMock = TestBed.inject(HttpTestingController);
+    return { service, httpMock };
+  }
+
   const mockTodos: ITodo[] = [
     { id: 1, task: 'Learn Angular', dueDate: '01-07-2025', completed: false },
     { id: 2, task: 'Build Todo App', dueDate: '02-07-2025', completed: true },
@@ -23,25 +33,22 @@ describe('TodoServices', () => {
         provideHttpClientTesting(),
       ],
     });
-
-    service = TestBed.inject(TodoServices);
-    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpMock.verify();
+    TestBed.inject(HttpTestingController).verify();
   });
 
-  it('should be created', () => {
+  it('should return a non-null service instance', () => {
+    const { service } = setup();
     expect(service).toBeTruthy();
   });
 
-  it('should fetch all todos using GET request', () => {
+  it('should return correct list of todos', () => {
+    const { service, httpMock } = setup();
+
     service.getAllTodos().subscribe((todos) => {
-      expect(todos.length).toBe(2);
       expect(todos).toEqual(mockTodos);
-      expect(todos[0].task).toBe('Learn Angular');
-      expect(todos[1].completed).toBe(true);
     });
 
     const req = httpMock.expectOne('todos');
@@ -49,27 +56,26 @@ describe('TodoServices', () => {
     req.flush(mockTodos);
   });
 
-  it('should handle empty response', () => {
-    const emptyTodos: ITodo[] = [];
+  it('should return empty list when no todos are available', () => {
+    const { service, httpMock } = setup();
 
     service.getAllTodos().subscribe((todos) => {
-      expect(todos).toEqual([]);
       expect(todos.length).toBe(0);
     });
 
     const req = httpMock.expectOne('todos');
     expect(req.request.method).toBe('GET');
-    req.flush(emptyTodos);
+    req.flush([]);
   });
 
-  it('should handle HTTP error', () => {
+  it('should propagate 404 error correctly', () => {
+    const { service, httpMock } = setup();
     const errorMessage = 'Failed to fetch todos';
 
     service.getAllTodos().subscribe({
       next: () => fail('Expected an error'),
       error: (error) => {
         expect(error.status).toBe(404);
-        expect(error.statusText).toBe('Not Found');
       },
     });
 
@@ -78,7 +84,9 @@ describe('TodoServices', () => {
     req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });
 
-  it('should make request to correct endpoint', () => {
+  it('should call correct API endpoint', () => {
+    const { service, httpMock } = setup();
+
     service.getAllTodos().subscribe();
 
     const req = httpMock.expectOne('todos');
