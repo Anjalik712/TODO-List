@@ -19,6 +19,49 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { TranslatePipe } from '@ngx-translate/core';
 import { TodoServices } from '../../core/services/todo.services';
 
+/**
+ * LLD
+ * ---
+ * This component provides a modal interface to create or edit a todo task.
+ * It uses a reactive form to handle user inputs, dynamically patches form values in edit mode,
+ * and communicates with a service to persist task data.
+ *
+ * COMPONENT RESPONSIBILITIES
+ * --------------------------
+ * - **Form Initialization**:
+ *   - Creates a reactive form with `task` and `dueDate` fields.
+ *   - Applies `required` validation to both fields.
+
+ * - **Edit Mode Handling**:
+ *   - Detects edit mode based on `todoData` input and modal ID (`editTaskModal`).
+ *   - Automatically patches form values if `todoData` is provided.
+
+ * - **Submission Flow**:
+ *   - On form submission:
+ *     - Prevents invalid form submission.
+ *     - If in edit mode, updates the existing todo via `TodoServices.updateTodo()`.
+ *     - Otherwise, creates a new todo via `TodoServices.createTodo()`.
+ *   - Emits `taskAdded` output event after successful operation.
+
+ * - **Change Detection Strategy**:
+ *   - Uses `OnPush` to optimize performance by avoiding unnecessary checks.
+
+ * EXECUTION FLOW
+ * --------------
+ * - On `@Input()` changes:
+ *   1) If `todoData` is updated and `isEditMode` is true, form is patched with new values.
+
+ * - On form submit:
+ *   1) Validate form. If valid:
+ *      - If `isEditMode`, call `updateTodo` API.
+ *      - Else, call `createTodo` API.
+ *   2) Emit `taskAdded` to notify parent component.
+
+ * - On successful API call:
+ *   1) Modal is expected to close using Bootstrap's `data-bs-dismiss`.
+ *   2) Form values are retained unless explicitly reset.
+ */
+
 @Component({
   selector: 'app-create-todo',
   imports: [CommonModule, ReactiveFormsModule, ButtonComponent, TranslatePipe],

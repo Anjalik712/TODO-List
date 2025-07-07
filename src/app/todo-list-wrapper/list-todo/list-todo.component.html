@@ -1,5 +1,5 @@
-<form class="d-flex flex-wrap gap-2 align-items-center justify-content-between">
-  <div class="search-wrapper">
+<form class="row">
+  <div class="search-wrapper col-10">
     <input
       class="form-control me-2 focus-ring"
       type="search"
@@ -11,10 +11,11 @@
   </div>
   <app-button
     [label]="'PAGE.BUTTONS.ADD_TASK' | translate"
-    cssClass="btn btn-success"
+    cssClass="btn btn-success "
     toggle="modal"
     target="#createTaskModal"
     (taskAdded)="refreshTodos()"
+    class="col-2 text-nowrap"
   ></app-button>
 </form>
 <p *ngIf="userSearchInput.value">

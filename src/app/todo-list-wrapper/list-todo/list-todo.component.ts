@@ -8,6 +8,51 @@ import { CreateTodoComponent } from '../create-todo/create-todo.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
+
+/**
+ * LLD
+ * ---
+ * This component displays the list of pending and completed tasks.
+ * It includes functionality to search, mark complete, edit, and delete tasks.
+ * Also handles modal interactions for creating and editing tasks.
+ *
+ * COMPONENT RESPONSIBILITIES
+ * --------------------------
+ * - **Search & Filter**:
+ *   - Allows user to search tasks by task name using a reactive input (`userSearchInput`).
+ *   - Displays search result count with total count.
+
+ * - **Task List Display**:
+ *   - Displays pending and completed tasks in separate sections.
+ *   - Applies `searchFilterPipe` to dynamically filter displayed tasks.
+ *   - Renders "no tasks" messages when appropriate.
+
+ * - **Task Actions**:
+ *   - Provides checkboxes to toggle task completion state via `toggleComplete()`.
+ *   - Edit button opens modal pre-filled with selected task using `openEditModal()`.
+ *   - Delete button removes task via `onDelete()`.
+
+ * - **Modal Interactions**:
+ *   - Launches create task modal via `#createTaskModal`.
+ *   - Launches edit task modal via `#editTaskModal`, pre-filling with selected task.
+ *   - List refreshes on task addition (`taskAdded` event from modals).
+
+ * EXECUTION FLOW
+ * --------------
+ * - On user input in search bar:
+ *   1) Filters both pending and completed tasks using `searchFilterPipe`.
+
+ * - On clicking "Add Task":
+ *   1) Opens `#createTaskModal` modal component.
+
+ * - On clicking "Edit":
+ *   1) Calls `openEditModal(pendingTask)` to pass data to modal.
+ *   2) Opens `#editTaskModal`.
+
+ * - On `taskAdded` (from modals):
+ *   1) Refreshes task list by invoking `refreshTodos()`.
+ */
+
 @Component({
   selector: 'app-list-todo',
   imports: [
