@@ -20,7 +20,7 @@
         <form [formGroup]="todoForm" id="{{ id }}" (ngSubmit)="onSubmit()">
           <div class="row mb-3">
             <label for="task" class="col-form-label col-sm-3">
-              {{ 'PAGE.LABELS.TASK_HEADER' | translate }}
+              {{ 'PAGE.LABELS.TASK' | translate }}
             </label>
             <div class="col-sm-9">
               <input
@@ -33,7 +33,7 @@
           </div>
           <div class="row mb-3">
             <label for="duedate" class="col-form-label col-sm-3">
-              {{ 'PAGE.LABELS.DUE_DATE_HEADER' | translate }}
+              {{ 'PAGE.LABELS.DUE_DATE' | translate }}
             </label>
             <div class="col-sm-9">
               <input

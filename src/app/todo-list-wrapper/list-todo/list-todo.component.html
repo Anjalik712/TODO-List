@@ -29,9 +29,9 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">{{ 'PAGE.LABELS.TASK_HEADER' | translate }}</th>
-        <th scope="col">{{ 'PAGE.LABELS.DUE_DATE_HEADER' | translate }}</th>
-        <th scope="col">{{ 'PAGE.LABELS.ACTIONS_HEADER' | translate }}</th>
+        <th scope="col">{{ 'PAGE.LABELS.TASK' | translate }}</th>
+        <th scope="col">{{ 'PAGE.LABELS.DUE_DATE' | translate }}</th>
+        <th scope="col">{{ 'PAGE.LABELS.ACTIONS' | translate }}</th>
       </tr>
     </thead>
     <tbody>
@@ -80,7 +80,7 @@
       <tr>
         <td></td>
         <th colspan="3">
-          {{ 'PAGE.LABELS.COMPLETED_TASKS_HEADER' | translate }}
+          {{ 'PAGE.LABELS.COMPLETED_TASKS' | translate }}
         </th>
       </tr>
       <tr *ngIf="!completedTasks().length">
@@ -110,7 +110,7 @@
 </div>
 <app-create-todo
   [id]="'createTaskModal'"
-  [title]="'PAGE.LABELS.ADD_TASK_TITLE' | translate"
+  [title]="'PAGE.LABELS.ADD_NEW_TASK' | translate"
   (taskAdded)="refreshTodos()"
 ></app-create-todo>
 <app-create-todo

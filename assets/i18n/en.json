@@ -7,15 +7,13 @@
       "SUBMIT": "Submit"
     },
     "LABELS": {
-      "APPLICATION_TITLE": "To-Do List",
-      "ADD_TASK_TITLE": "Add New Task",
-      "EDIT_TASK_TITLE": "Modify Task",
-      "TASK": "Task:",
-      "DUE_DATE": "Due Date:",
-      "TASK_HEADER": "Task",
-      "DUE_DATE_HEADER": "Due Date",
-      "ACTIONS_HEADER": "Actions",
-      "COMPLETED_TASKS_HEADER": "Completed Tasks"
+      "TODO_LIST": "To-Do List",
+      "ADD_NEW_TASK": "Add New Task",
+      "MODIFY_TASK": "Modify Task",
+      "TASK": "Task",
+      "DUE_DATE": "Due Date",
+      "ACTIONS": "Actions",
+      "COMPLETED_TASKS": "Completed Tasks"
     },
     "TOOLTIPS": {},
     "PLACEHOLDERS": {},
