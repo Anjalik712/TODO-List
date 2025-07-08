@@ -1,7 +1,7 @@
-<form class="row">
-  <div class="search-wrapper col-10">
+<form class="row gy-2 align-items-center">
+  <div class="col-12 col-sm-9">
     <input
-      class="form-control me-2 focus-ring"
+      class="form-control focus-ring"
       type="search"
       id="search"
       placeholder="Search by Task"
@@ -9,14 +9,16 @@
       [formControl]="userSearchInput"
     />
   </div>
-  <app-button
-    [label]="'PAGE.BUTTONS.ADD_TASK' | translate"
-    cssClass="btn btn-success "
-    toggle="modal"
-    target="#createTaskModal"
-    (taskAdded)="refreshTodos()"
-    class="col-2 text-nowrap"
-  ></app-button>
+  <div class="col-12 col-sm-3 d-flex justify-content-end">
+    <app-button
+      [label]="'PAGE.BUTTONS.ADD_TASK' | translate"
+      cssClass="btn btn-success "
+      toggle="modal"
+      target="#createTaskModal"
+      (taskAdded)="refreshTodos()"
+      
+    ></app-button>
+  </div>
 </form>
 <p *ngIf="userSearchInput.value">
   Number of search result :
