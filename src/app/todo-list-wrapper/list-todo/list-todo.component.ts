@@ -8,6 +8,7 @@ import { CreateTodoComponent } from '../create-todo/create-todo.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
+import { SkeletonComponent } from '../../shared/skeleton/skeleton.component';
 
 /**
  * LLD
@@ -65,6 +66,7 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
     TranslatePipe,
     SearchFilterPipe,
     ReactiveFormsModule,
+    SkeletonComponent
   ],
   templateUrl: './list-todo.component.html',
   styleUrl: './list-todo.component.scss',
@@ -83,15 +85,17 @@ export class ListTodoComponent implements OnInit {
   private todoServices = inject(TodoServices); //inject services to handle apis
   userSearchInput = new FormControl(''); //input field binding for search functionality
   selectedTaskToEdit: ITodo = null; //stores the task selected for editing
-
+  loading=true; //Flag to store if data is loaded or not
   ngOnInit(): void {
     this.refreshTodos();
   }
 
   // Refreshes the todo list by fetching data from the server
   refreshTodos(): void {
+    this.loading = true;
     this.todoServices.getAllTodos().subscribe((data: ITodo[]) => {
       this.todos.set(data);
+      this.loading = false;
     });
   }
 
