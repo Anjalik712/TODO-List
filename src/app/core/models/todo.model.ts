@@ -3,3 +3,7 @@ export interface ICreateTodo {
   dueDate: string;
   completed: boolean;
 }
+
+export interface ITodo extends ICreateTodo {
+  id: number;
+}

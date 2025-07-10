@@ -3,7 +3,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { ITodo } from '../../core/models/ITodo.model';
+import { ITodo } from '../../core/models/todo.model';
 import { TodoService } from '../../core/services/todo.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';

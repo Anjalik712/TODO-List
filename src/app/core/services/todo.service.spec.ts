@@ -6,7 +6,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { TodoService } from './todo.service';
-import { ITodo } from '../models/ITodo.model';
+import { ITodo } from '../models/todo.model';
 
 interface TodoServiceTestContext {
   service: TodoService;

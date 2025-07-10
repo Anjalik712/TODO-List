@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ICreateTodo } from '../models/ICreateTodo.model';
-import { ITodo } from '../models/ITodo.model';
+import { ITodo, ICreateTodo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root',
