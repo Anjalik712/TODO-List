@@ -46,6 +46,9 @@ export class ButtonComponent {
   // Label to display inside the button
   @Input() label = '';
 
+  // id for button
+  @Input() id = '';
+
   // HTML button type (e.g., 'button', 'submit', 'reset')
   @Input() type = 'button';
 

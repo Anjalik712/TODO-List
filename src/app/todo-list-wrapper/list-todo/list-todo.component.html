@@ -12,6 +12,7 @@
     </div>
     <div class="col-12 col-sm-3 d-flex justify-content-end">
       <app-button
+        [id]="'add-task-button'"
         [label]="'PAGE.BUTTONS.ADD_TASK' | translate"
         cssClass="btn btn-success "
         toggle="modal"
@@ -65,6 +66,7 @@
           <td>
             <div class="d-flex column-gap-2">
               <app-button
+                [id]="'edit-button-' + pendingTask.id"
                 icon="bi bi-pencil-fill"
                 cssClass="btn btn-sm"
                 toggle="modal"
@@ -72,6 +74,7 @@
                 (click)="openEditModal(pendingTask)"
               />
               <app-button
+                [id]="'delete-button-' + pendingTask.id"
                 icon="bi bi-trash-fill"
                 cssClass="btn btn-sm"
                 (click)="onDelete(pendingTask.id)"

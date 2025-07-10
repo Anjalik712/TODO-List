@@ -72,7 +72,7 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 })
 export class CreateTodoComponent implements OnChanges {
   // ID for the modal (create or edit)
-  @Input() id!: string;
+  @Input() id = '';
 
   // Title of the modal
   @Input() title = 'Task Details';
@@ -110,15 +110,15 @@ export class CreateTodoComponent implements OnChanges {
   }
 
   //prefill the form in modal
-  setFormValues(): void {
+  setFormValues = (): void => {
     this.todoForm.patchValue({
       task: this.todoData?.task || '',
       dueDate: this.todoData?.dueDate || '',
     });
-  }
+  };
 
   //Handle submit function
-  onSubmit(): void {
+  submitHandler = (): void => {
     // Prevent submission if form is invalid
     if (this.todoForm.invalid) return;
     const formValue = this.todoForm.value;
@@ -146,5 +146,5 @@ export class CreateTodoComponent implements OnChanges {
           next: () => this.taskAdded.emit(),
         });
     }
-  }
+  };
 }
