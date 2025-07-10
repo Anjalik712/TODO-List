@@ -1,4 +1,5 @@
+$primary-green: #198754;
+
 input:focus {
-    border-color: #198754;
-  }
-  
+  border-color: $primary-green;
+}
