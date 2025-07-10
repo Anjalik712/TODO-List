@@ -6,9 +6,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ITodo } from '../../core/models/todo.model';
 import { TodoService } from '../../core/services/todo.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
-import { SkeletonComponent } from '../../shared/skeleton/skeleton.component';
 import { CreateTodoComponent } from '../create-todo/create-todo.component';
 
 /**
