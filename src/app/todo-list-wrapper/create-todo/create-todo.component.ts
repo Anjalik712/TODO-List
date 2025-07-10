@@ -97,10 +97,16 @@ export class CreateTodoComponent implements OnChanges {
     dueDate: new FormControl('', Validators.required),
   });
 
-  // Detect changes to @inputs, specifically `todoData`, for edit mode and patch values
+  // Detect changes to @inputs, specifically `todoData`, for edit mode and patch values in modal form
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['todoData'] && this.isEditMode) {
-      this.setFormValues();
+    const todoChange = changes['todoData'];
+    if (todoChange && this.isEditMode) {
+      const prev = todoChange.previousValue;
+      const curr = todoChange.currentValue;
+
+      if (JSON.stringify(prev) !== JSON.stringify(curr)) {
+        this.setFormValues();
+      }
     }
   }
 
