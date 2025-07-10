@@ -74,7 +74,7 @@ export default [
               position: 'before',
             },
             {
-              pattern: '**/*.services',
+              pattern: '**/*.service',
               group: 'internal',
               position: 'before',
             },

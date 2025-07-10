@@ -4,7 +4,7 @@ import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ITodo } from '../../core/models/ITodo.model';
-import { TodoServices } from '../../core/services/todo.services';
+import { TodoService } from '../../core/services/todo.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
@@ -67,7 +67,7 @@ import { CreateTodoComponent } from '../create-todo/create-todo.component';
     TranslatePipe,
     SearchFilterPipe,
     ReactiveFormsModule,
-    SkeletonComponent
+    SkeletonComponent,
   ],
   templateUrl: './list-todo.component.html',
   styleUrl: './list-todo.component.scss',
@@ -83,10 +83,10 @@ export class ListTodoComponent implements OnInit {
     this.todos().filter((todo) => todo.completed)
   );
 
-  private todoServices = inject(TodoServices); //inject services to handle apis
+  private todoService = inject(TodoService); //inject Service to handle apis
   userSearchInput = new FormControl(''); //input field binding for search functionality
   selectedTaskToEdit: ITodo = null; //stores the task selected for editing
-  loading=true; //Flag to store if data is loaded or not
+  loading = true; //Flag to store if data is loaded or not
   ngOnInit(): void {
     this.refreshTodos();
   }
@@ -94,7 +94,7 @@ export class ListTodoComponent implements OnInit {
   // Refreshes the todo list by fetching data from the server
   refreshTodos(): void {
     this.loading = true;
-    this.todoServices.getAllTodos().subscribe((data: ITodo[]) => {
+    this.todoService.getAllTodos().subscribe((data: ITodo[]) => {
       this.todos.set(data);
       this.loading = false;
     });
@@ -103,7 +103,7 @@ export class ListTodoComponent implements OnInit {
   //Toggles the completion status of todo
   toggleComplete(todo: ITodo): void {
     todo.completed = !todo.completed;
-    this.todoServices.changeStatus(todo.id, todo.completed).subscribe({
+    this.todoService.changeStatus(todo.id, todo.completed).subscribe({
       next: () => this.refreshTodos(),
       error: () => (todo.completed = !todo.completed), // Revert if error
     });
@@ -116,7 +116,7 @@ export class ListTodoComponent implements OnInit {
 
   // Deletes a todo by ID and refreshes the list
   onDelete(id: number): void {
-    this.todoServices.deleteTodo(id).subscribe({
+    this.todoService.deleteTodo(id).subscribe({
       next: () => this.refreshTodos(),
       error: () => alert('Failed to delete task. Please try again.'),
     });

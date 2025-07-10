@@ -17,7 +17,7 @@ import {
 } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { TodoServices } from '../../core/services/todo.services';
+import { TodoService } from '../../core/services/todo.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 
 /**
@@ -40,8 +40,8 @@ import { ButtonComponent } from '../../shared/components/button/button.component
  * - **Submission Flow**:
  *   - On form submission:
  *     - Prevents invalid form submission.
- *     - If in edit mode, updates the existing todo via `TodoServices.updateTodo()`.
- *     - Otherwise, creates a new todo via `TodoServices.createTodo()`.
+ *     - If in edit mode, updates the existing todo via `TodoService.updateTodo()`.
+ *     - Otherwise, creates a new todo via `TodoService.createTodo()`.
  *   - Emits `taskAdded` output event after successful operation.
 
  * - **Change Detection Strategy**:
@@ -88,8 +88,8 @@ export class CreateTodoComponent implements OnChanges {
   // Output event to notify parent component when a task is added or updated
   @Output() taskAdded = new EventEmitter<void>();
 
-  //inject services to handle apis
-  private todoService = inject(TodoServices);
+  //inject Service to handle apis
+  private todoService = inject(TodoService);
 
   // Reactive form group definition for task creation/editing
   todoForm = new FormGroup({

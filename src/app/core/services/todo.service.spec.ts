@@ -5,18 +5,18 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { TodoServices } from './todo.services';
+import { TodoService } from './todo.service';
 import { ITodo } from '../models/ITodo.model';
 
 interface TodoServiceTestContext {
-  service: TodoServices;
+  service: TodoService;
   httpMock: HttpTestingController;
 }
 
-describe('TodoServices', () => {
+describe('TodoService', () => {
   // Reusable setup method to get instances
   function setup(): TodoServiceTestContext {
-    const service = TestBed.inject(TodoServices);
+    const service = TestBed.inject(TodoService);
     const httpMock = TestBed.inject(HttpTestingController);
     return { service, httpMock };
   }
@@ -28,11 +28,7 @@ describe('TodoServices', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        TodoServices,
-        provideHttpClient(),
-        provideHttpClientTesting(),
-      ],
+      providers: [TodoService, provideHttpClient(), provideHttpClientTesting()],
     });
   });
 

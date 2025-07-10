@@ -8,7 +8,7 @@ import { ITodo } from '../models/ITodo.model';
 @Injectable({
   providedIn: 'root',
 })
-export class TodoServices {
+export class TodoService {
   // Base endpoint for the todos API
   private readonly endpoint = 'todos';
 
