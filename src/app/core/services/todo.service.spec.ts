@@ -15,11 +15,11 @@ interface TodoServiceTestContext {
 
 describe('TodoService', () => {
   // Reusable setup method to get instances
-  function setup(): TodoServiceTestContext {
+  const setup = (): TodoServiceTestContext => {
     const service = TestBed.inject(TodoService);
     const httpMock = TestBed.inject(HttpTestingController);
     return { service, httpMock };
-  }
+  };
 
   const mockTodos: ITodo[] = [
     { id: 1, task: 'Learn Angular', dueDate: '01-07-2025', completed: false },
