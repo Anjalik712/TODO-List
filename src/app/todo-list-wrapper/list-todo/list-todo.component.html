@@ -17,7 +17,7 @@
         toggle="modal"
         target="#createTaskModal"
         (taskAdded)="refreshTodos()"
-      ></app-button>
+      />
     </div>
   </form>
   <p *ngIf="userSearchInput.value">
@@ -70,12 +70,12 @@
                 toggle="modal"
                 target="#editTaskModal"
                 (click)="openEditModal(pendingTask)"
-              ></app-button>
+              />
               <app-button
                 icon="bi bi-trash-fill"
                 cssClass="btn btn-sm"
                 (click)="onDelete(pendingTask.id)"
-              ></app-button>
+              />
             </div>
           </td>
         </tr>
@@ -117,13 +117,13 @@
   [id]="'createTaskModal'"
   [title]="'PAGE.LABELS.ADD_NEW_TASK' | translate"
   (taskAdded)="refreshTodos()"
-></app-create-todo>
+/>
 <app-create-todo
   [id]="'editTaskModal'"
   [title]="'PAGE.LABELS.MODIFY_TASK' | translate"
   [todoData]="selectedTaskToEdit"
   (taskAdded)="refreshTodos()"
-></app-create-todo>
+/>
 
 <div *ngIf="loading">
   <app-skeleton width="100%" height="1.5rem" />
