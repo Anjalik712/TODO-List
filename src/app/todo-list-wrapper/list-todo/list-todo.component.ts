@@ -1,14 +1,15 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { ButtonComponent } from '../../shared/components/button/button.component';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
+
 import { ITodo } from '../../core/models/ITodo.model';
 import { TodoServices } from '../../core/services/todo.services';
-import { CreateTodoComponent } from '../create-todo/create-todo.component';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
-import { TranslatePipe } from '@ngx-translate/core';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
 import { SkeletonComponent } from '../../shared/skeleton/skeleton.component';
+import { CreateTodoComponent } from '../create-todo/create-todo.component';
 
 /**
  * LLD

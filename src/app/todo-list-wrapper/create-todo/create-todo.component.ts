@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -8,16 +9,16 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   FormGroup,
   FormControl,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ButtonComponent } from '../../shared/components/button/button.component';
 import { TranslatePipe } from '@ngx-translate/core';
+
 import { TodoServices } from '../../core/services/todo.services';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 /**
  * LLD
@@ -72,10 +73,10 @@ import { TodoServices } from '../../core/services/todo.services';
 export class CreateTodoComponent implements OnChanges {
   // ID for the modal (create or edit)
   @Input() id!: string;
-  
+
   // Title of the modal
   @Input() title = 'Task Details';
-  
+
   // Optional data passed to pre-fill the form for editing a todo
   @Input() todoData: {
     id: number;
@@ -83,13 +84,13 @@ export class CreateTodoComponent implements OnChanges {
     dueDate: string;
     completed: boolean;
   };
-  
+
   // Output event to notify parent component when a task is added or updated
   @Output() taskAdded = new EventEmitter<void>();
-  
+
   //inject services to handle apis
   private todoService = inject(TodoServices);
-  
+
   // Reactive form group definition for task creation/editing
   todoForm = new FormGroup({
     task: new FormControl('', Validators.required),

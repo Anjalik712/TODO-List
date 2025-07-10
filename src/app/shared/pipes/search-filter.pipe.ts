@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+
 import { ITodo } from '../../core/models/ITodo.model';
 /**
  * Filters the list of todos based on the search input.

@@ -1,4 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
+
 import { TranslationConfig } from './translation.config';
 
 /**

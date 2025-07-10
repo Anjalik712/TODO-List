@@ -1,4 +1,3 @@
-import { inject } from '@angular/core';
 import {
   HttpInterceptorFn,
   HttpRequest,

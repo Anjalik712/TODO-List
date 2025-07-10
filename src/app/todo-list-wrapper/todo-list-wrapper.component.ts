@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListTodoComponent } from './list-todo/list-todo.component';
+import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { ListTodoComponent } from './list-todo/list-todo.component';
 /**
  * LLD
  * ---
