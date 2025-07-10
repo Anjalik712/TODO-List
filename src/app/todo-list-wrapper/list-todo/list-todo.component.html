@@ -16,7 +16,7 @@
         [label]="'PAGE.BUTTONS.ADD_TASK' | translate"
         cssClass="btn btn-success "
         toggle="modal"
-        target="#createTaskModal"
+        [target]="'#' + modalConst.CREATE_TASK"
         (taskAdded)="refreshTodos()"
       />
     </div>
@@ -70,7 +70,7 @@
                 icon="bi bi-pencil-fill"
                 cssClass="btn btn-sm"
                 toggle="modal"
-                target="#editTaskModal"
+                [target]="'#' + modalConst.EDIT_TASK"
                 (click)="openEditModal(pendingTask)"
               />
               <app-button
@@ -117,12 +117,12 @@
   </div>
 </div>
 <app-create-todo
-  [id]="'createTaskModal'"
+  [id]="modalConst.CREATE_TASK"
   [title]="'PAGE.LABELS.ADD_NEW_TASK' | translate"
   (taskAdded)="refreshTodos()"
 />
 <app-create-todo
-  [id]="'editTaskModal'"
+  [id]="modalConst.EDIT_TASK"
   [title]="'PAGE.LABELS.MODIFY_TASK' | translate"
   [todoData]="selectedTaskToEdit"
   (taskAdded)="refreshTodos()"

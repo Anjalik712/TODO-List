@@ -3,6 +3,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { MODAL_CONST } from '../../core/config/modal-constants.config';
 import { ITodo } from '../../core/models/todo.model';
 import { TodoService } from '../../core/services/todo.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
@@ -10,7 +11,6 @@ import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.com
 import { HighlightPendingDirective } from '../../shared/directives/highlight-pending.directive';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
 import { CreateTodoComponent } from '../create-todo/create-todo.component';
-
 /**
  * LLD
  * ---
@@ -83,6 +83,7 @@ export class ListTodoComponent implements OnInit {
     this.todos().filter((todo) => todo.completed)
   );
 
+  modalConst = MODAL_CONST; //Variable to access constants from html template
   private todoService = inject(TodoService); //inject Service to handle apis
   userSearchInput = new FormControl(''); //input field binding for search functionality
   selectedTaskToEdit: ITodo = null; //stores the task selected for editing

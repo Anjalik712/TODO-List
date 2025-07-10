@@ -17,9 +17,9 @@ import {
 } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { MODAL_CONST } from '../../core/config/modal-constants.config';
 import { TodoService } from '../../core/services/todo.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-
 /**
  * LLD
  * ---
@@ -104,6 +104,7 @@ export class CreateTodoComponent implements OnChanges {
       const prev = todoChange.previousValue;
       const curr = todoChange.currentValue;
 
+      //set form values explicitly only if previous and current values are different
       if (JSON.stringify(prev) !== JSON.stringify(curr)) {
         this.setFormValues();
       }
@@ -112,7 +113,7 @@ export class CreateTodoComponent implements OnChanges {
 
   //check if it is edit mode
   get isEditMode(): boolean {
-    return this.todoData && this.id === 'editTaskModal';
+    return this.todoData && this.id === MODAL_CONST.EDIT_TASK;
   }
 
   //prefill the form in modal
