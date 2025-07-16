@@ -1,0 +1,22 @@
+{
+  "MESSAGE": {},
+
+  "PAGE": {
+    "BUTTONS": {
+      "ADD_TASK": "Add Task",
+      "SUBMIT": "Submit"
+    },
+    "LABELS": {
+      "TODO_LIST": "To-Do List",
+      "ADD_NEW_TASK": "Add New Task",
+      "MODIFY_TASK": "Modify Task",
+      "TASK": "Task",
+      "DUE_DATE": "Due Date",
+      "ACTIONS": "Actions",
+      "COMPLETED_TASKS": "Completed Tasks"
+    },
+    "TOOLTIPS": {},
+    "PLACEHOLDERS": {},
+    "ALTERNATE_TEXTS": {}
+  }
+}

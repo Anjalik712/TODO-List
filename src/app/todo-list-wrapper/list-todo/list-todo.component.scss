@@ -1,0 +1,20 @@
+$primary-green: #198754;
+$shadow-color: rgba(25, 135, 84, 0.402);
+
+.form-check-input:checked {
+  background-color: $primary-green;
+  border-color: $primary-green;
+}
+.form-check-input:checked {
+  box-shadow: $shadow-color;
+}
+input[type='search']::-webkit-search-cancel-button {
+  filter: invert(100%) hue-rotate(105deg);
+}
+input:focus {
+  border-color: $primary-green;
+}
+app-skeleton {
+  display: flex;
+  justify-content: center;
+}

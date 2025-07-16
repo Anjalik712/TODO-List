@@ -48,8 +48,11 @@
     "@nx/angular:application": {
       "e2eTestRunner": "none",
       "linter": "eslint",
-      "style": "css",
+      "style": "scss",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "scss"
     }
   },
   "defaultProject": "todo-list"

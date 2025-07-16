@@ -1,3 +1,7 @@
 import { Route } from '@angular/router';
 
-export const appRoutes: Route[] = [];
+import { TodoListWrapperComponent } from './todo-list-wrapper/todo-list-wrapper.component';
+
+export const appRoutes: Route[] = [
+  { path: '', component: TodoListWrapperComponent },
+];
